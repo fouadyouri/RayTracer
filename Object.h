@@ -11,4 +11,6 @@ public:
 
 	virtual Color getColor() = 0;
 
+	virtual vect3d getNormalAt(vect3d V) = 0
+
 };
