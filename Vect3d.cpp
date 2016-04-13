@@ -2,31 +2,31 @@
 #include <math.h>
 
 
-vect3d vect3d::vectAdd(vect3d v) {
+vect3d vect3d::vectAdd(vect3d vect_arg) {
 	
 	vect3d newVect;
 
-	newVect.x = x + v.x;
-	newVect.y = y + v.y;
-	newVect.z = z + v.z;
+	newVect.x = x + vect_arg.x;
+	newVect.y = y + vect_arg.y;
+	newVect.z = z + vect_arg.z;
 
 	return newVect;
 }
 
-vect3d vect3d::vectMulti(double s) {
+vect3d vect3d::vectMulti(double point_arg) {
 	
 	vect3d newVect;
 	
-	newVect.x = x * s;
-	newVect.y = y * s;
-	newVect.z = z * s;
+	newVect.x = x * point_arg;
+	newVect.y = y * point_arg;
+	newVect.z = z * point_arg;
 
 	return newVect;
 }
 
-double vect3d::dotProduct(vect3d v) {
+double vect3d::dotProduct(vect3d vect_arg) {
 
-	double dotProdResult = (x * v.x) + (y * v.y) + (z * v.z);
+	double dotProdResult = (x * vect_arg.x) + (y * vect_arg.y) + (z * vect_arg.z);
 
 	return dotProdResult;
 }
@@ -60,13 +60,13 @@ vect3d vect3d::negative() {
 	return newVect;
 }
 
-vect3d vect3d::crossProduct(vect3d v) {
+vect3d vect3d::crossProduct(vect3d vect_arg) {
 
 	vect3d newVect;
 	
-	newVect.x = (y * v.z) - (z * v.y);
-	newVect.y = (z * v.x) - (x * v.z);
-	newVect.z = (x * v.y) - (y * v.x);
+	newVect.x = (y * vect_arg.z) - (z * vect_arg.y);
+	newVect.y = (z * vect_arg.x) - (x * vect_arg.z);
+	newVect.z = (x * vect_arg.y) - (y * vect_arg.x);
 
 	return newVect;
 } 
