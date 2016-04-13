@@ -1,4 +1,4 @@
-#pragma once 
+ #pragma once 
 
 #include "Vect3d.h"
 
