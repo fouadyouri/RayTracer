@@ -1,6 +1,12 @@
 #include <iostream>
 #include "Color.h"
-
+#include "Vect3d.h"
+#include "Camera.h"
+#include "Object.h"
+#include "Plane.h"
+#include "Sphere.h"
+#include <vector>
+#include "Ray.h"
 using namespace std;
 
 void saveBMP(const char *fileName, int width, int height, int dpi, Color *data) {
@@ -73,60 +79,54 @@ void drawLine(Color *picture, int  width, int height, int x1, int y1, int x2, in
 
 int main (int argc, char* argv[]) {
 
-	int width = 1920;
-	int height = 1080;
+	int width = 1000;
+	int height = 1000;
 	int dpi = 72;
 
 	Color* picture = new Color[width * height];
-	double h1 = (height / 100.0) * 30;
-	double h2 = (height / 100.0) * 90;
-	double v1 = (width / 100.0) * 23;
-	double v2 = (width / 100.0) * 77;
 
-	double r = 100.0;
-	double m = 150.0;
-	double n = 180.0;
-	double val = 0;
+	vect3d X(1, 0, 0);
+	vect3d Y(0, 1, 0);
+	vect3d Z(0, 0, 1);
+	vect3d O(0, 0, 0);
 
-	// ================== la methode de dessin ====================
-	for(int x = 0; x < width; x++) {
-		for(int y = 0; y < height; y++) {
-			int thisOne = y * width + x;
-			double a = x - m;
-			double b = y - n;
+	vect3d camPosition = O;
+	vect3d camDirection = Y;
+	vect3d camRight = X;
+	vect3d camUp = Z;
 
-		// ================== Circle ====================
-			
-			if( a != 0) {
-				val = (((r * r) - (b * b)) / (a * a));
-				val -= 1.0;
-			} 
-			else {
-				val = 0;
-			}
-			if(-0.1 < val < 0.1) {
-				picture[thisOne] = Color(0, 0, 0);
-			}
-			else {
-				picture[thisOne] = Color(1, 1, 1);
-			}
+	Camera camera(camUp, camRight, camPosition, camDirection);
 
-		// ============== horizontal line ================
-			if(y == h1 || y == h2) {
-				picture[thisOne] = Color(1, 0, 0);
-			}
+	vect3d normalPlane_1 = Y.negative();
+	double distancePlane_1 = -20;
+	Plane plane_1(normalPlane_1, distancePlane_1);
+
+	vect3d centerSphere_1(-2, 10, 0);
+	double radiusSphere_1 = 0.5;
+	Sphere sphere_1(centerSphere_1, radiusSphere_1);
+
+	vector<Object*> v;
+	v.push_back(dynamic_cast<Object*>(&plane_1));
+	v.push_back(dynamic_cast<Object*>(&sphere_1));
+
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			int thisone = i * width + j;
+			double xR = static_cast<float>(i) / width;
+			double yR = static_cast<float>(j) / height;
+
+			vect3d ray_origin = camera.getPosition();
+			vect3d ray_direction = camera.getCamDirection().vectAdd(camera.getCamRight().vectMulti(xR - 0.5).vectAdd(camera.getCamUp().vectMulti(yR - 0.5))).normalized(); 
 		
-		// ============== Vertical line ================	
-			if(x == v1 || x == v2) {
-				picture[thisOne] = Color(1, 0, 0);
+			Ray r(ray_origin, ray_direction);
+			vector<double> intersections;
+			for (int k = 0; k < v.size(); k++) {
+				intersections.push_back(v[k]->findIntersectionAt(r));
 			}
-		// ============== Diagonale line ================
-			if(x - y == 0) {
-				picture[thisOne] = Color(1, 1, 1);
-			}
-		
-			
+			int indxClosestObject;
+
 		}
+
 	}
 
 
