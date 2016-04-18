@@ -1,13 +1,45 @@
 #include <iostream>
+#include <stdio.h>
+#include <vector>
+
 #include "Color.h"
 #include "Vect3d.h"
 #include "Camera.h"
 #include "Object.h"
 #include "Plane.h"
 #include "Sphere.h"
-#include <vector>
 #include "Ray.h"
+
 using namespace std;
+
+int find(vector<double> a){
+	double max, min;
+	int index;
+	if (a.size() == 0)
+		return -1;
+	else{
+		max = a[0];
+		index = 0;
+		for (int i = 1; i<a.size(); i++){
+			if (a[i] > max)
+			{
+				max = a[i];
+				index = i;
+			}
+		}
+		if (max<0)
+			return -1;
+		min = max;
+		for (int i = 1; i<a.size(); i++){
+			if ((a[i] < min) && (a[i] > 0))
+			{
+				min = a[i];
+				index = i;
+			}
+		}
+		return index;
+	}
+}
 
 void saveBMP(const char *fileName, int width, int height, int dpi, Color *data) {
 
@@ -61,7 +93,7 @@ void saveBMP(const char *fileName, int width, int height, int dpi, Color *data) 
 		double red = data[i].getColorRed() * 255;
 		double green = data[i].getColorGreen() * 255;
 		double blue = data[i].getColorBlue() * 255;
-	
+
 		unsigned char color[3] = {(int)blue, (int)green, (int)red};
 		fwrite(color, 1, 3, f);
 	}
@@ -94,16 +126,20 @@ int main (int argc, char* argv[]) {
 	vect3d camDirection = Y;
 	vect3d camRight = X;
 	vect3d camUp = Z;
+	Color red(1, 0, 0);
+	Color green(0, 1, 0);
 
 	Camera camera(camUp, camRight, camPosition, camDirection);
 
 	vect3d normalPlane_1 = Y.negative();
-	double distancePlane_1 = -20;
+	double distancePlane_1 = 20;
 	Plane plane_1(normalPlane_1, distancePlane_1);
+	plane_1.color = red;
 
 	vect3d centerSphere_1(-2, 10, 0);
 	double radiusSphere_1 = 0.5;
 	Sphere sphere_1(centerSphere_1, radiusSphere_1);
+	sphere_1.color = green;
 
 	vector<Object*> v;
 	v.push_back(dynamic_cast<Object*>(&plane_1));
@@ -116,14 +152,24 @@ int main (int argc, char* argv[]) {
 			double yR = static_cast<float>(j) / height;
 
 			vect3d ray_origin = camera.getPosition();
-			vect3d ray_direction = camera.getCamDirection().vectAdd(camera.getCamRight().vectMulti(xR - 0.5).vectAdd(camera.getCamUp().vectMulti(yR - 0.5))).normalized(); 
-		
+			vect3d ray_direction = camera.getCamDirection().vectAdd(camera.getCamRight().vectMulti(xR - 0.5).vectAdd(camera.getCamUp().vectMulti(yR - 0.5))).normalized();
+
 			Ray r(ray_origin, ray_direction);
 			vector<double> intersections;
 			for (int k = 0; k < v.size(); k++) {
 				intersections.push_back(v[k]->findIntersectionAt(r));
 			}
-			int indxClosestObject;
+			int indxClosestObject = find(intersections);
+			if (indxClosestObject == -1) {
+				picture[thisone].setColorBlue(0);
+				picture[thisone].setColorGreen(0);
+				picture[thisone].setColorRed(0);
+			}
+			else {
+				picture[thisone].setColorBlue(v[indxClosestObject]->getColor().getColorBlue());
+				picture[thisone].setColorGreen(v[indxClosestObject]->getColor().getColorGreen());
+				picture[thisone].setColorRed(v[indxClosestObject]->getColor().getColorRed());
+			}
 
 		}
 
