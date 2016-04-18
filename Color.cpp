@@ -1,7 +1,7 @@
 #include "Color.h"
 
 
-// ======== Returne RGB Colors ========
+// ======== Return RGB Colors ========
 double Color::getColorRed() {
 	return red;
 }
