@@ -9,7 +9,7 @@ void Ray::setOrigin(vect3d newOrigin) {
 }
 
 void Ray::setDirection(vect3d newDirection) {
-	
+
 	direction.x = newDirection.x;
 	direction.y = newDirection.y;
 	direction.z = newDirection.z;
@@ -22,3 +22,4 @@ vect3d Ray::getOrigin() {
 vect3d Ray::getDirection() {
 	return direction;
 }
+
