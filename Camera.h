@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Vect3d.h"
 
 class Camera {
@@ -8,14 +9,14 @@ public:
 	vect3d camRight;
 	vect3d camPosition;
 	vect3d camDirection;
-	
+
 	Camera(vect3d cUp_var, vect3d cRight_var, vect3d cPosition_var, vect3d cDirection_var) {
 		camUp = cUp_var;
 		camRight = cRight_var;
 		camPosition = cPosition_var;
 		camDirection = cDirection_var;
 	}
-	
+
 	void setCamUp(vect3d position_var) {
 		camUp = position_var;
 	}
@@ -28,7 +29,7 @@ public:
 	void setCamPosition(vect3d position_var) {
 		camPosition = position_var;
 	}
-	
+
 	vect3d getCamUp() {
 		return camUp;
 	}
