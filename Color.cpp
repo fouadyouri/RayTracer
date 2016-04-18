@@ -27,3 +27,5 @@ void Color::setColorGreen(double g) {
 void Color::setColorBlue(double b) {
 	blue = b;
 }
+
+
