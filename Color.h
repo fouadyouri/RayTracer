@@ -1,27 +1,24 @@
 #pragma once
 
-
 class Color {
-	double red;   
+	double red;
 	double green;
 	double blue;
 
 public:
-// ===== Constructer =====
+// ===== Constructor =====
 	Color() {
 		red = 0;
 		green = 0;
 		blue = 0;
 	}
 
-// ====== Constructer with parameter ======
+// ====== Constructor with parameter ======
 	Color(double r, double g, double b) {
 		red = r;
 		green = g;
 		blue = b;
 	}
-
-
 
 	double getColorRed();
 	double getColorGreen();
@@ -32,3 +29,4 @@ public:
 	void setColorBlue(double b);
 
 };
+
