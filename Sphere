@@ -2,6 +2,14 @@
 
 #include "Object.h"
 #include <math.h>
+
+double fmin2(double st_var1, double nd_var2) {
+	if(st_var1 <= nd_var2)
+		return st_var1;
+	else
+		return nd_var2;
+}
+
 class Sphere:public Object {
 public:
 	vect3d center;
@@ -19,9 +27,9 @@ public:
 	vect3d getNormalAt(vect3d vect_arg) {
 		vect3d n;
 		vect3d PminC = vect_arg.vectAdd(center.negative());
-		
+
 		n = PminC.normalized();
-		
+
 		return n;
 	}
 
@@ -32,7 +40,7 @@ public:
 		double c = PminO.dotProduct(PminO) - (radius * radius);
 
 		double insideSqrt = b * b - 4 * c;
-		
+
 		if (insideSqrt < 0) {			// Return -1 because it's complex numbers
 			return -1;					//---------------------------------------
 		}								//---------------------------------------
@@ -50,7 +58,7 @@ public:
 				if (T2 < 0)
 					return T1;
 				else if (T2 >= 0)
-					return fmin(T1, T2);
+					return fmin2(T1, T2);
 			}
 		}
 		else {
@@ -71,3 +79,5 @@ public:
 		return center;
 	}
 };
+
+
