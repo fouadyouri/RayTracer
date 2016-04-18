@@ -1,7 +1,7 @@
 #include "Color.h"
 
 
-// ======== Returnes RGB Colors ========
+// ======== Returne RGB Colors ========
 double Color::getColorRed() {
 	return red;
 }
@@ -15,7 +15,7 @@ double Color::getColorBlue() {
 }
 
 
-// ========== Sets RGB Colors ==========
+// ========== Set RGB Colors ==========
 void Color::setColorRed(double r) {
 	red = r;
 }
@@ -27,5 +27,3 @@ void Color::setColorGreen(double g) {
 void Color::setColorBlue(double b) {
 	blue = b;
 }
-
-
