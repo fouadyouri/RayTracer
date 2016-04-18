@@ -2,7 +2,6 @@
 
 #include "Object.h"
 
-
 class Plane:public Object {
 public:
 	double distance;
@@ -43,3 +42,4 @@ public:
 	}
 
 };
+
