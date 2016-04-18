@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 class vect3d {
 public:
@@ -6,21 +6,19 @@ public:
 	double y;
 	double z;
 
-// ===== Constructer =====
+// ===== Constructor =====
 	vect3d() {
 		x = 0;
 		y = 0;
 		z = 0;
 	}
 
-// ====== Constructer with parameters ======
+// ====== Constructor with parameters ======
 	vect3d(double a, double b, double c) {
 		x = a;
 		y = b;
 		z = c;
 	}
-
-
 
 	double dotProduct(vect3d v);
 	double abs();
