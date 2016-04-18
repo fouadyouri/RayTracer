@@ -1,15 +1,14 @@
- #pragma once 
+ #pragma once
 
 #include "Vect3d.h"
 
 class Ray {
-	
 	vect3d origin;
 	vect3d direction;
 
 public:
 
-// ===== Constructer =====
+// ===== Constructor =====
 	Ray() {
 
 		origin.x = 0;
@@ -20,8 +19,8 @@ public:
 		direction.y = 0;
 		direction.z = 1;
 	}
-	
-// ====== Constructer with parameters ======
+
+// ====== Constructor with parameters ======
 	Ray(vect3d newOrigin, vect3d newDirection) {
 
 		origin.x = newOrigin.x;
@@ -32,7 +31,6 @@ public:
 		direction.y = newDirection.y;
 		direction.z = newDirection.z;
 	}
-
 
 	void setOrigin(vect3d newOrigin);
 
