@@ -3,14 +3,14 @@
 #include "Vect3d.h"
 
 class Ray {
+public:
 	vect3d origin;
 	vect3d direction;
 
-public:
+
 
 // ===== Constructor =====
 	Ray() {
-
 		origin.x = 0;
 		origin.y = 0;
 		origin.z = 0;
