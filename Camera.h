@@ -16,7 +16,7 @@ public:
 		camPosition = cPosition_var;
 		camDirection = cDirection_var;
 	}
-
+// ======= Set Functions =======
 	void setCamUp(vect3d position_var) {
 		camUp = position_var;
 	}
@@ -30,6 +30,7 @@ public:
 		camPosition = position_var;
 	}
 
+// ======= Get Functions =======
 	vect3d getCamUp() {
 		return camUp;
 	}
