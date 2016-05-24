@@ -14,10 +14,10 @@ public:
 	}
 
 // ====== Constructor with parameters ======
-	vect3d(double a, double b, double c) {
-		x = a;
-		y = b;
-		z = c;
+	vect3d(double x_var, double y_var, double z_var) {
+		x = x_var;
+		y = y_var;
+		z = z_var;
 	}
 
 	double dotProduct(vect3d v);
