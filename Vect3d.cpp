@@ -3,7 +3,6 @@
 
 
 vect3d vect3d::vectAdd(vect3d vect_arg) {
-
 	vect3d newVect;
 
 	newVect.x = x + vect_arg.x;
@@ -14,7 +13,6 @@ vect3d vect3d::vectAdd(vect3d vect_arg) {
 }
 
 vect3d vect3d::vectMulti(double point_arg) {
-
 	vect3d newVect;
 
 	newVect.x = x * point_arg;
@@ -25,21 +23,18 @@ vect3d vect3d::vectMulti(double point_arg) {
 }
 
 double vect3d::dotProduct(vect3d vect_arg) {
-
 	double dotProdResult = (x * vect_arg.x) + (y * vect_arg.y) + (z * vect_arg.z);
 
 	return dotProdResult;
 }
 
 double vect3d::abs() {
-
 	double absResult = sqrt((x*x) + (y*y) + (z*z));
 
 	return absResult;
 }
 
 vect3d vect3d::normalized() {
-
 	vect3d newVect;
 
 	newVect.x = x / abs();
@@ -50,7 +45,6 @@ vect3d vect3d::normalized() {
 }
 
 vect3d vect3d::negative() {
-
 	vect3d newVect;
 
 	newVect.x = -x;
@@ -61,7 +55,6 @@ vect3d vect3d::negative() {
 }
 
 vect3d vect3d::crossProduct(vect3d vect_arg) {
-
 	vect3d newVect;
 
 	newVect.x = (y * vect_arg.z) - (z * vect_arg.y);
